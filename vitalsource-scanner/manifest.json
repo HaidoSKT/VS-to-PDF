@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "VitalSource to PDF",
+  "version": "3.0.0",
+  "description": "Capture VitalSource Bookshelf pages as screenshots and save them in a single PDF.",
+  "permissions": [
+    "activeTab",
+    "downloads",
+    "storage",
+    "unlimitedStorage",
+    "sidePanel",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "*://*.vitalsource.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "popup.html"
+  },
+  "action": {
+    "default_title": "VitalSource to PDF – Open Sidebar"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.vitalsource.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
